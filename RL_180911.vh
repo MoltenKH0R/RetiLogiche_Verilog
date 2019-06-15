@@ -20,7 +20,7 @@ module XXX(clock, reset_, dav_, rfd, enne, a13_a0, d7_d0, campione);
   always @(reset_ == 0) begin STAR<=S0; RFD<=0; COUNT<=cicli; end
   always @(posedge clock) if (reset_ == 1) #3
     casex(STAR)
-      S0: begin RFD<=1; CAMPIONE<='H00; A13_A0<=(enne*cicli); STAR<=(dav_ == 1)?S0:S1 end
+      S0: begin RFD<=1; CAMPIONE<='H00; A13_A0<=(enne*cicli); STAR<=(dav_ == 1)?S0:S1; end
       S1: begin RFD<=0; STAR<=(dav_ == 0)?S1:S2; end
       S2: begin CAMPIONE<=d7_d0; STAR<=S3; end
       S3: begin COUNT<=(COUNT == 1)?cicli:(COUNT-1); A13_A0<=A13_A0+1; STAR<=(COUNT == 1)?S0:S3; end
@@ -128,7 +128,7 @@ module XXX(clock, reset_, dav_, rfd, enne, a13_a0, d7_d0, campione);
       'B10: begin CAMPIONE<=d7_d0; end
       'BX1: begin CAMPIONE<=CAMPIONE; end
     endcase
-  
+
   //reg A13_A0
   wire b3,b2; assign {b5,b4} = (STAR == S0)?'B00:(STAR == S3)?'B10:'BX1;
   always @(reset_ == 0) begin A13_A0<A13_A0; end
