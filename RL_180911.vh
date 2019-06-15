@@ -183,7 +183,6 @@ module XXX(clock, reset_, dav_, rfd, enne, a13_a0, d7_d0, campione);
   wire b6,b5,b4,b3,b2,b1,b0,c1,c0;
   Parte_Operativa PO(clock, reset_, dav_, rfd, enne, a13_a0, d7_d0, campione, b6, b5, b4, b3, b2, b1, b0, c1, c0);
   Parte_Controllo PC(clock, reset_, b6, b5, b4, b3, b2, b1, b0, c1, c0);
-  parameter cicli = 1024;
 
 endmodule
 
